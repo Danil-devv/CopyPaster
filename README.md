@@ -5,6 +5,6 @@ Just clone repo
 ## Improvements ##
 
 -[X] script for pasting
--[ ] image-to-text with https://github.com/prabhakar267/image2text#sample-image
+-[X] image-to-text with tesseract
 -[ ] UI for pasting (PyQt6 prolly)
 -[ ] hot-key for pasting/think about changing focus on avrora
