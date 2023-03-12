@@ -2,7 +2,7 @@
 
 Just clone repo
 
-`git clone https://github.com/lokot0k/AvroraForcePaster`
+`git clone https://github.com/lokot0k/AvroraForcePaster.git`
 
 Also you may need to install reqs:
 
