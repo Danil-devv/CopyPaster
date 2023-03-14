@@ -2,7 +2,8 @@ from PIL import Image
 import pytesseract
 
 from paste import sol_method_paste, code_paste
-from utils import get_mode, ModeConstants
+from utils import get_mode
+from constants import ModeConstants
 
 
 def main():

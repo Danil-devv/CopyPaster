@@ -1,17 +1,8 @@
 import sys
 import time
-from enum import Enum
 from platform import system as platform
 from os import system
-
-
-class ModeConstants(str, Enum):
-    SOLUTION_MODE = "sol"
-    CODE_MODE = "code"
-
-
-AVRORA_NAME = "ARM_Student"
-PASTING_MODES = [ModeConstants.SOLUTION_MODE, ModeConstants.CODE_MODE]
+from constants import AVRORA_NAME, ModeConstants, PASTING_MODES
 
 
 def _win32_enum_callback(hwnd, wildcard):
