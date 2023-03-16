@@ -2,20 +2,26 @@ from PIL import Image
 import pytesseract
 
 from paste import sol_method_paste, code_paste
-from utils import get_mode
+from utils import get_mode, get_src
 from constants import ModeConstants
+
+from parser import parse_args
 
 
 def main():
-    input_file = input("Input path to file you want to paste:\n")
-    custom_config = r'-l rus+eng --psm 6'
-    try:
-        txt = pytesseract.image_to_string(Image.open(f'{input_file}'),
-                                          config=custom_config)
-    except FileNotFoundError:
-        print("Allegedly the file path is wrong")
-        exit(0)
-    mode = get_mode()
+    args = parse_args()
+    src, src_type = get_src(args)
+    if src_type == "text":
+        txt = src
+    else:
+        custom_config = r'-l rus+eng --psm 6'
+        try:
+            txt = pytesseract.image_to_string(Image.open(f'{src}'),
+                                              config=custom_config)
+        except FileNotFoundError:
+            print("Allegedly the file path is wrong")
+            exit(0)
+    mode = get_mode(args)
     match mode:
         case ModeConstants.SOLUTION_MODE:
             sol_method_paste(txt)

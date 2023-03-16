@@ -1,8 +1,14 @@
-import sys
+import os.path
 import time
+import typing
 from platform import system as platform
 from os import system
-from constants import AVRORA_NAME, ModeConstants, PASTING_MODES
+from typing import Any
+
+import pyperclip
+
+from constants import AVRORA_NAME, ModeConstants, PASTING_MODES, STD_SOURCE, \
+    SUPPORTED_TYPES
 
 
 def _win32_enum_callback(hwnd, wildcard):
@@ -32,11 +38,19 @@ def focus_change():
         time.sleep(3)  # TODO: make linux and win switch
 
 
-def get_mode():
-    mode = ModeConstants.SOLUTION_MODE  # by default
-    if len(sys.argv) > 2:
-        mode = sys.argv[2]
-    if mode not in PASTING_MODES:
+def get_mode(args: dict[str, Any]) -> ModeConstants:
+    if args["mode"] not in PASTING_MODES:
         print("Unknown pasting mode, solution mode chose by default")
-        mode = ModeConstants.SOLUTION_MODE
-    return mode
+        args["mode"] = ModeConstants.SOLUTION_MODE  # by default
+    return args["mode"]
+
+
+def get_src(args: dict[str, Any]) -> typing.Tuple[str, str]:
+    data: str = args["source"]
+    if args["source"] == STD_SOURCE:
+        data: str = pyperclip.paste()
+        data.replace("\t", "")
+    if os.path.exists(data) and (os.path.splitext(data)[1] in SUPPORTED_TYPES):
+        return data, "path"
+    # TODO: think about proper return type
+    return data, "text"

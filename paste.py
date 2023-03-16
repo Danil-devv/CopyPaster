@@ -29,9 +29,12 @@ def sol_method_paste(text):
         keyb.type("\n")
 
 
+# пастинг кода(плейн текст без форматирования)
 def code_paste(text):
+    focus_change()
     keyb = Controller()
     for letter in text:
+        time.sleep(0.1)
         try:
             keyb.type(letter)
         except Controller.InvalidCharacterException:
