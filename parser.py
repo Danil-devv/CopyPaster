@@ -8,9 +8,9 @@ def parse_args():
     parser.add_argument('--mode', default=ModeConstants.SOLUTION_MODE,
                         help=f"Pick mode of pasting:\n"
                              f"if you want to paste solution method,"
-                             f" choose {ModeConstants.SOLUTION_MODE};\n"
+                             f" write '{ModeConstants.SOLUTION_MODE}';\n"
                              f"if you want to paste code,"
-                             f" choose {ModeConstants.CODE_MODE}.")
+                             f" write '{ModeConstants.CODE_MODE}'")
 
     parser.add_argument('--source', default=STD_SOURCE,
                         help="By default is 'buffer', which is a keyword for "
