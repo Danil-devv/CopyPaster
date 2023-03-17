@@ -2,15 +2,13 @@ from PIL import Image
 import pytesseract
 
 from paste import sol_method_paste, code_paste
-from utils import get_mode, get_src
 from constants import ModeConstants
 
-from parser import parse_args
+from parser import args_processor
 
 
 def main():
-    args = parse_args()
-    src, src_type = get_src(args)
+    src, src_type = args_processor.source
     if src_type == "text":
         txt = src
     else:
@@ -21,8 +19,8 @@ def main():
         except FileNotFoundError:
             print("Allegedly the file path is wrong")
             exit(0)
-    mode = get_mode(args)
-    match mode:
+
+    match args_processor.mode:
         case ModeConstants.SOLUTION_MODE:
             sol_method_paste(txt)
         case ModeConstants.CODE_MODE:

@@ -36,21 +36,3 @@ def focus_change():
     else:
         print("You have < 3 seconds to alt+tab into avrora! Hurry!")
         time.sleep(3)  # TODO: make linux and win switch
-
-
-def get_mode(args: dict[str, Any]) -> ModeConstants:
-    if args["mode"] not in PASTING_MODES:
-        print("Unknown pasting mode, solution mode chose by default")
-        args["mode"] = ModeConstants.SOLUTION_MODE  # by default
-    return args["mode"]
-
-
-def get_src(args: dict[str, Any]) -> typing.Tuple[str, str]:
-    data: str = args["source"]
-    if args["source"] == STD_SOURCE:
-        data: str = pyperclip.paste()
-        data.replace("\t", "")
-    if os.path.exists(data) and (os.path.splitext(data)[1] in SUPPORTED_TYPES):
-        return data, "path"
-    # TODO: think about proper return type
-    return data, "text"
