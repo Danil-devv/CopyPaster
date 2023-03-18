@@ -16,7 +16,7 @@ Now you're all set!
 
 ## Usage ##
 
-`python main.py` and input path to picture
+`python main.py --help` for guide 
 
 ## Improvements ##
 
@@ -24,7 +24,7 @@ Now you're all set!
 - [X] image-to-text with tesseract
 - [ ] Proper pasting with enter+shift instead nl (unnecessary)
 - [ ] Deal with markers from pictures (unnecessary)
-- [ ] UI for pasting (PyQt6 prolly/Terminal util)
+- [X] UI for pasting (PyQt6 prolly/Terminal util)
 - [X] hot-key for pasting or auto-changing focus on avrora on macOS
 - [X] do previous task on windows
 - [ ] do previous task on linux

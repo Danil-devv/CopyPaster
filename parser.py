@@ -45,14 +45,16 @@ args_processor.add_argument('--mode', '-m',
                             default=ModeConstants.SOLUTION_MODE,
                             help=f"Pick mode of pasting:\n"
                                  f"if you want to paste solution method,"
-                                 f" write '{ModeConstants.SOLUTION_MODE}';\n"
+                                 f" write '{ModeConstants.SOLUTION_MODE}';"
                                  f"if you want to paste code,"
                                  f" write '{ModeConstants.CODE_MODE}'")
 
 args_processor.add_argument('--source', '-s',
                             default=STD_SOURCE,
-                            help="By default is 'buffer', which is a keyword for "
-                                 "taking image path or plain text from clipboard\n"
-                                 "If you don't want such behaviour, you can instead"
+                            help="By default is 'buffer', which is a keyword "
+                                 "for taking image path or plain text from "
+                                 "clipboard. "
+                                 "If you don't want such behaviour, you can "
+                                 "instead"
                                  " provide path or text in this arg manually")
 args_processor.parse_args()

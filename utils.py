@@ -1,14 +1,9 @@
-import os.path
 import time
-import typing
+
 from platform import system as platform
 from os import system
-from typing import Any
 
-import pyperclip
-
-from constants import AVRORA_NAME, ModeConstants, PASTING_MODES, STD_SOURCE, \
-    SUPPORTED_TYPES
+from constants import AVRORA_NAME
 
 
 def _win32_enum_callback(hwnd, wildcard):
@@ -24,7 +19,7 @@ def focus_change():
         )
         if exit_code != 0:
             print(
-                "Error occured while switching to Avrora."
+                "Error occurred while switching to Avrora."
                 " Do you have it opened?")
             exit(0)
 
@@ -35,4 +30,4 @@ def focus_change():
 
     else:
         print("You have < 3 seconds to alt+tab into avrora! Hurry!")
-        time.sleep(3)  # TODO: make linux and win switch
+        time.sleep(3)  # TODO: make linux switch
