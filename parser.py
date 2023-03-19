@@ -2,8 +2,11 @@ import os
 import typing
 
 import pyperclip
+from PIL import Image
+from pytesseract import pytesseract
 
-from constants import ModeConstants, STD_SOURCE, SUPPORTED_TYPES, PASTING_MODES
+from constants import ModeConstants, STD_SOURCE, SUPPORTED_TYPES, \
+    PASTING_MODES, SUPPORTED_CODE_TYPES, SUPPORTED_IMAGES_TYPES
 
 from argparse import ArgumentParser
 
@@ -16,7 +19,6 @@ class CustomParser(ArgumentParser):
 
     def parse_args(self):
         ns = vars(super().parse_args())
-        print(ns)
         for arg, value in ns.items():
             setattr(self, "_" + arg, value)
 
@@ -28,6 +30,8 @@ class CustomParser(ArgumentParser):
             data.replace("\t", "")
         if os.path.exists(data) and (
                 os.path.splitext(data)[1] in SUPPORTED_TYPES):
+            if os.path.splitext(data)[1] in SUPPORTED_CODE_TYPES:
+                self._mode = ModeConstants.CODE_MODE  # change mode to 'code'
             return data, "path"
         # TODO: think about proper return type
         return data, "text"
@@ -38,6 +42,19 @@ class CustomParser(ArgumentParser):
             print("Unknown pasting mode, solution mode chose by default")
             self._mode = ModeConstants.SOLUTION_MODE  # by default
         return self._mode
+
+    def get_text(self) -> str:
+        src, src_type = self.source
+        if src_type == "text":
+            txt = src
+        elif os.path.splitext(src)[1] in SUPPORTED_IMAGES_TYPES:
+            custom_config = r'-l rus+eng --psm 6'
+            txt = pytesseract.image_to_string(Image.open(src),
+                                              config=custom_config)
+        elif os.path.splitext(src)[1] in SUPPORTED_CODE_TYPES:
+            with open(src) as file:
+                txt = file.read()
+        return txt
 
 
 args_processor = CustomParser()

@@ -9,4 +9,6 @@ class ModeConstants(str, Enum):
 AVRORA_NAME = "ARM_Student"
 PASTING_MODES = [ModeConstants.SOLUTION_MODE, ModeConstants.CODE_MODE]
 STD_SOURCE = "buffer"
-SUPPORTED_TYPES = [".jpeg", ".png", ".jpg"]
+SUPPORTED_IMAGES_TYPES = [".jpeg", ".png", ".jpg"]
+SUPPORTED_CODE_TYPES = [".c", ".h", ".cpp"]
+SUPPORTED_TYPES = SUPPORTED_CODE_TYPES + SUPPORTED_IMAGES_TYPES
