@@ -6,7 +6,8 @@ class ModeConstants(str, Enum):
     CODE_MODE = "code"
 
 
-AVRORA_NAME = "ARM_Student"
+AVRORA_LINUX = "ARM_Student"
+AVRORA_WIN = "ACO Avrora"
 PASTING_MODES = [ModeConstants.SOLUTION_MODE, ModeConstants.CODE_MODE]
 STD_SOURCE = "buffer"
 SUPPORTED_IMAGES_TYPES = [".jpeg", ".png", ".jpg"]
