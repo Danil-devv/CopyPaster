@@ -5,7 +5,7 @@ from pynput.keyboard import Controller
 from utils import focus_change
 
 
-# пастинг метода решения
+# pasting of the solution method
 def sol_method_paste(text):
     txt = text.split("\n")
     focus_change()
@@ -29,7 +29,7 @@ def sol_method_paste(text):
         keyb.type("\n")
 
 
-# пастинг кода(плейн текст без форматирования)
+# pasting of the code(aka pasting as-is)
 def code_paste(text):
     focus_change()
     keyb = Controller()

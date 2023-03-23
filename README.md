@@ -28,3 +28,5 @@ Now you're all set!
 - [X] hot-key for pasting or auto-changing focus on avrora on macOS
 - [X] do previous task on windows
 - [ ] do previous task on linux
+- [ ] build executable for Windows
+- [ ] write explaining docs

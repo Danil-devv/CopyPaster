@@ -26,7 +26,9 @@ class CustomParser(ArgumentParser):
     def source(self) -> typing.Tuple[str, str]:
         data: str = self._source
         if self._source == STD_SOURCE:
-            data: str = pyperclip.paste()
+            data: str | None = pyperclip.paste()
+            if data is None:
+                print("Data not found. Do you have anything in your clipboard?")
             data.replace("\t", "")
         if os.path.exists(data) and (
                 os.path.splitext(data)[1] in SUPPORTED_TYPES):
