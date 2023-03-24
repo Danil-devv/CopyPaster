@@ -29,7 +29,7 @@ class CustomParser(ArgumentParser):
             data: str | None = pyperclip.paste()
             if data is None:
                 print("Data not found. Do you have anything in your clipboard?")
-            data.replace("\t", "")
+            data.replace(" " * 4, "")
         if os.path.exists(data) and (
                 os.path.splitext(data)[1] in SUPPORTED_TYPES):
             if os.path.splitext(data)[1] in SUPPORTED_CODE_TYPES:

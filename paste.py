@@ -13,7 +13,7 @@ def sol_method_paste(text):
 
     for line in txt:
         is_prefix = False
-        if ":" not in line:
+        if line.strip()[-1] != ":":
             is_prefix = True
         if is_prefix:
             for _ in range(4):
