@@ -14,6 +14,9 @@ And if you're using windows, you also may need to install one more manually:
 
 Now you're all set!
 
+---
+If you're using Linux, you should install wmctrl package. 
+
 ## Usage ##
 
 `python main.py --help` for guide 
@@ -27,7 +30,7 @@ Now you're all set!
 - [X] UI for pasting (PyQt6 prolly/Terminal util)
 - [X] hot-key for pasting or auto-changing focus on avrora on macOS
 - [X] do previous task on windows
-- [ ] do previous task on linux
+- [X] do previous task on linux
 - [X] build executable for Windows
 - [X] write explaining docs
 

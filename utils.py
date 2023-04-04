@@ -1,9 +1,9 @@
-import time
+import subprocess
 
 from platform import system as platform
 from os import system
 
-from constants import AVRORA_LINUX, AVRORA_WIN
+from constants import AVRORA_MACOS, AVRORA
 
 
 def _win32_enum_callback(hwnd, wildcard):
@@ -15,7 +15,7 @@ def _win32_enum_callback(hwnd, wildcard):
 def focus_change():
     if platform() == 'Darwin':
         exit_code = system(
-            f'''/usr/bin/osascript -e 'tell app "Finder" to set frontmost of process "{AVRORA_LINUX}" to true' '''
+            f'''/usr/bin/osascript -e 'tell app "Finder" to set frontmost of process "{AVRORA_MACOS}" to true' '''
         )
         if exit_code != 0:
             print(
@@ -26,7 +26,6 @@ def focus_change():
     elif platform() in ("Windows", "win32", "cygwin"):
         import win32gui
         win32gui.EnumWindows(_win32_enum_callback,
-                             AVRORA_WIN)
+                             AVRORA)
     else:
-        print("You have < 3 seconds to alt+tab into avrora! Hurry!")
-        time.sleep(3)  # TODO: make linux switch
+        subprocess.run(['wmctrl', '-a', AVRORA])
