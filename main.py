@@ -1,15 +1,24 @@
-from paste import sol_method_paste, code_paste
-from constants import ModeConstants
-
+from paste import code_paste
+import keyboard
 from parser import args_processor
 
 
 def main():
-    txt = args_processor.get_text()
-    match args_processor.mode:
-        case ModeConstants.SOLUTION_MODE:
-            sol_method_paste(txt)
-        case ModeConstants.CODE_MODE:
+    while True:
+        # для вставки кода
+        if keyboard.read_key() == "f4":
+            txt = args_processor.get_text()
+            txt = txt.strip().replace("\r", "")
+            code_paste(txt)
+        # для вставки в метод решения
+        if keyboard.read_key() == "f5":
+            txt = args_processor.get_text()
+            txt = txt.strip().replace('\n', '')
+            code_paste(txt)
+        # для вставки в алгоритм
+        if keyboard.read_key() == "f6":
+            txt = args_processor.get_text()
+            txt = txt.strip().replace('\n', '').replace('\r', ' ')
             code_paste(txt)
 
 
